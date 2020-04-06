@@ -5,6 +5,7 @@
 /Users/phil/Dev/Howitzer/Howitzer/src/main/java/howitzer/beans/FireShot.java
 /Users/phil/Dev/Howitzer/Howitzer/src/main/java/howitzer/service/HistoryService.java
 /Users/phil/Dev/Howitzer/Howitzer/src/main/java/howitzer/service/HistoryServiceImpl.java
+/Users/phil/Dev/Howitzer/Howitzer/src/main/java/howitzer/util/MyServletContextListener.java
 /Users/phil/Dev/Howitzer/Howitzer/src/main/java/howitzer/dao/UsersDAO.java
 /Users/phil/Dev/Howitzer/Howitzer/src/main/java/howitzer/config/SecurityConfiguration.java
 /Users/phil/Dev/Howitzer/Howitzer/src/main/java/howitzer/dao/LogsDAO.java

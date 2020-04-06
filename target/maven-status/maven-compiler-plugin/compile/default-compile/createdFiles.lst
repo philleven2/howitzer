@@ -23,6 +23,7 @@ howitzer/config/SecurityWebApplicationInitializer.class
 howitzer/service/HistoryServiceImpl.class
 howitzer/service/LogsService.class
 howitzer/dao/UsersDAO.class
+howitzer/util/MyServletContextListener.class
 howitzer/beans/Users.class
 howitzer/service/HowitzerServiceImpl.class
 howitzer/exception/HowitzerException.class
