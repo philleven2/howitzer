@@ -1,10 +1,13 @@
+/Users/phil/Dev/Howitzer/Howitzer/src/main/java/howitzer/service/LogsService.java
 /Users/phil/Dev/Howitzer/Howitzer/src/main/java/howitzer/util/ConnectionUtil.java
 /Users/phil/Dev/Howitzer/Howitzer/src/main/java/howitzer/resources/HowitzerBundle.java
+/Users/phil/Dev/Howitzer/Howitzer/src/main/java/howitzer/beans/Logs.java
 /Users/phil/Dev/Howitzer/Howitzer/src/main/java/howitzer/beans/FireShot.java
 /Users/phil/Dev/Howitzer/Howitzer/src/main/java/howitzer/service/HistoryService.java
 /Users/phil/Dev/Howitzer/Howitzer/src/main/java/howitzer/service/HistoryServiceImpl.java
 /Users/phil/Dev/Howitzer/Howitzer/src/main/java/howitzer/dao/UsersDAO.java
 /Users/phil/Dev/Howitzer/Howitzer/src/main/java/howitzer/config/SecurityConfiguration.java
+/Users/phil/Dev/Howitzer/Howitzer/src/main/java/howitzer/dao/LogsDAO.java
 /Users/phil/Dev/Howitzer/Howitzer/src/main/java/howitzer/config/WebConfig.java
 /Users/phil/Dev/Howitzer/Howitzer/src/main/java/howitzer/beans/Properties.java
 /Users/phil/Dev/Howitzer/Howitzer/src/main/java/howitzer/beans/Users.java
@@ -16,6 +19,7 @@
 /Users/phil/Dev/Howitzer/Howitzer/src/main/java/howitzer/dao/HowitzerHistoryDAO.java
 /Users/phil/Dev/Howitzer/Howitzer/src/main/java/howitzer/exception/HowitzerException.java
 /Users/phil/Dev/Howitzer/Howitzer/src/main/java/howitzer/util/DataSourceMySQLSingleton.java
+/Users/phil/Dev/Howitzer/Howitzer/src/main/java/howitzer/service/LogsServiceImpl.java
 /Users/phil/Dev/Howitzer/Howitzer/src/main/java/howitzer/config/CommonConfig.java
 /Users/phil/Dev/Howitzer/Howitzer/src/main/java/howitzer/util/DspClassPath.java
 /Users/phil/Dev/Howitzer/Howitzer/src/main/java/howitzer/beans/HowitzerHistory.java

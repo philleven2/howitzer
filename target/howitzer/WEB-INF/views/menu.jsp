@@ -63,15 +63,19 @@ String selUserId = (String) request.getAttribute("selUserId");
 				data-toggle="tooltip" title="View history.">History</button>
 		</form>
 
+		<form class="form-inline" name="frmLogs" action="logs" method="GET">
+		    <button class="btn btn-sm btn-default" type="submit"
+		    data-toggle="tooltip" title="View logs.">Logs</button>
+		</form>
+
 		<form class="form-inline" name="frmRefresh" action="back" method="GET">
 			<button class="btn btn-sm btn-default" type="submit"
 				data-toggle="tooltip" title="Refresh dashboard.">Refresh</button>
 		</form>
 
-		<form class="form-inline" name="frmLogout" action="login" method="GET">
-			<input type="hidden" name="logout" value="logout" />
-			<button class="btn btn-sm btn-default" type="submit"
-				data-toggle="tooltip" title="Logout.">Logout</button>
+	   	<form class="form-inline" name="frmLogout" action="logout" method="POST">
+		    <button class="btn btn-sm btn-default" type="submit"
+		    data-toggle="tooltip" title="Logout.">Logout</button>
 		</form>
 
 	</nav>

@@ -17,13 +17,17 @@ howitzer/service/PropertiesServiceImpl.class
 howitzer/util/DataSourceMySQLSingleton.class
 howitzer/resources/HowitzerBundle.class
 howitzer/util/PagingUtilities.class
+howitzer/beans/Logs.class
 howitzer/config/SecurityWebApplicationInitializer.class
 howitzer/service/HistoryServiceImpl.class
+howitzer/service/LogsService.class
 howitzer/dao/UsersDAO.class
 howitzer/beans/Users.class
 howitzer/service/HowitzerServiceImpl.class
 howitzer/exception/HowitzerException.class
+howitzer/dao/LogsDAO.class
 howitzer/beans/Properties.class
 howitzer/util/DspClassPath.class
+howitzer/service/LogsServiceImpl.class
 howitzer/service/PropertiesService.class
 howitzer/config/RootConfig$ApplicationContextService.class
