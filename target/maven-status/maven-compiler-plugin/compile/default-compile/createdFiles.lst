@@ -18,6 +18,7 @@ howitzer/util/DataSourceMySQLSingleton.class
 howitzer/resources/HowitzerBundle.class
 howitzer/util/PagingUtilities.class
 howitzer/beans/Logs.class
+howitzer/util/DataSourceHikariSingleton.class
 howitzer/config/SecurityWebApplicationInitializer.class
 howitzer/service/HistoryServiceImpl.class
 howitzer/service/LogsService.class

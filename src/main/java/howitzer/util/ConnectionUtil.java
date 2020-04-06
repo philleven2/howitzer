@@ -7,6 +7,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import org.apache.log4j.Logger;
 import com.mysql.jdbc.jdbc2.optional.MysqlDataSource;
+import com.zaxxer.hikari.HikariDataSource;
+import howitzer.resources.HowitzerBundle;
 
 public class ConnectionUtil {
 
@@ -20,19 +22,89 @@ public class ConnectionUtil {
    */
   public static Connection getConnection() throws SQLException {
 
+    Connection conn = null;
+
+    try {
+
+      // MySQL database
+      String database = "Howitzer";
+
+      // Connection pool
+      String connPool = HowitzerBundle.getValueForKey("mysql.connection.pool");
+
+      // If Hikari
+      if (connPool.equals("hikari")) {
+
+        conn = getConnectionHikari(database);
+        
+      } else {
+        
+        conn = getConnectionMySQL(database);
+        
+      }
+
+    } catch (SQLException e) {
+
+      throw e;
+
+    }
+
+    return conn;
+
+  }
+
+  /**
+   * Get connection using MysqlDataSource.
+   * 
+   * @param database
+   * @return
+   * @throws SQLException
+   */
+  public static Connection getConnectionMySQL(String database) throws SQLException {
+
     MysqlDataSource dataSource = null;
 
     Connection conn = null;
 
     try {
 
-      // Get data source
-      dataSource = DataSourceMySQLSingleton.instance().getDataSource();
-
-      // Get connection
-      conn = dataSource.getConnection();
+        // Get data source
+        dataSource = DataSourceMySQLSingleton.instance().getDataSource();
+        
+        // Get connection
+        conn = dataSource.getConnection();
 
     } catch (SQLException e) {
+
+      throw e;
+
+    }
+
+    return conn;
+
+  }
+
+  /**
+   * Get connection using Hikari.
+   * 
+   * @param dataBase
+   * @return
+   * @throws SQLException
+   */
+  public static Connection getConnectionHikari(String database) throws SQLException {
+
+    HikariDataSource pooled = null;
+
+    Connection conn = null;
+
+    try {
+
+        pooled = DataSourceHikariSingleton.instance().getPooledDataSource();
+
+      // Get connection
+      conn = pooled.getConnection();
+
+    } catch (NullPointerException | SQLException e) {
 
       throw e;
 

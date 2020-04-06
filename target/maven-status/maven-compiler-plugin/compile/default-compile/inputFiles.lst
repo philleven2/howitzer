@@ -29,4 +29,5 @@
 /Users/phil/Dev/Howitzer/Howitzer/src/main/java/howitzer/service/PropertiesServiceImpl.java
 /Users/phil/Dev/Howitzer/Howitzer/src/main/java/howitzer/service/UserService.java
 /Users/phil/Dev/Howitzer/Howitzer/src/main/java/howitzer/service/HowitzerServiceImpl.java
+/Users/phil/Dev/Howitzer/Howitzer/src/main/java/howitzer/util/DataSourceHikariSingleton.java
 /Users/phil/Dev/Howitzer/Howitzer/src/main/java/howitzer/config/RootConfig.java
