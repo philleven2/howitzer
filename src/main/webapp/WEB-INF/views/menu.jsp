@@ -73,7 +73,7 @@ String selUserId = (String) request.getAttribute("selUserId");
 				data-toggle="tooltip" title="Refresh dashboard.">Refresh</button>
 		</form>
 
-	   	<form class="form-inline" name="frmLogout" action="logout" method="POST">
+	   	<form class="form-inline" name="frmLogout" action="logout" method="GET">
 		    <button class="btn btn-sm btn-default" type="submit"
 		    data-toggle="tooltip" title="Logout.">Logout</button>
 		</form>

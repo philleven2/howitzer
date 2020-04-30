@@ -51,24 +51,19 @@ public class MainController {
 
     ModelAndView model = new ModelAndView();
 
+    // If invalid login
     if (error != null) {
 
       model.addObject("error", "Invalid username and password!");
 
     }
 
-    if (logout != null) {
-
-      model.addObject("msg", "You've been logged out successfully.");
-
-    }
-
     model.setViewName("login");
     return model;
-
+    
   }
 
-  @RequestMapping(value = {"/logout"}, method = RequestMethod.POST)
+  @RequestMapping(value = {"/logout"}, method = RequestMethod.GET)
   public String logout(HttpServletRequest request, HttpServletResponse response) {
     
     HttpSession session = request.getSession(false);

@@ -77,9 +77,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         .formLogin().loginPage("/login").failureUrl("/login?error").usernameParameter("username")
         .passwordParameter("password").and()
 
-        // Logout is in MainController.java.
         // Configure the logout page.  
-        //.logout().logoutSuccessUrl("/login?logout").invalidateHttpSession(true).deleteCookies("JSESSIONID").and()
+        .logout().logoutSuccessUrl("/login?logout").invalidateHttpSession(true).deleteCookies("JSESSIONID").and()
 
         // In Spring 4.x upwards we need to explicitly
         // disable CSRF (as below) or alternatively add some HTML to the page to enable CSRF.
