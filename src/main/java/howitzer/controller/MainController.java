@@ -393,7 +393,7 @@ public class MainController {
       log.error(e.getMessage(), e);
       e.printStackTrace();
 
-      model = new ModelAndView("results");
+      model = new ModelAndView("listLogs");
       model.addObject("msg", e);
       return model;
 
