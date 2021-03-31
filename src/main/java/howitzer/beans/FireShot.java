@@ -7,7 +7,7 @@ public class FireShot implements Serializable {
 
   private final static long serialVersionUID = 1L;
   
-  final static Logger log = Logger.getLogger(FireShot.class.getName());
+  //final static Logger log = Logger.getLogger(FireShot.class.getName());
   
   private String userId;
   private double distanceToTarget;
@@ -24,7 +24,7 @@ public class FireShot implements Serializable {
   // Default constructor
   public FireShot() {
     
-    log.debug("Created instance: " + this.toString());
+    //log.debug("Created instance: " + this.toString());
 
     this.userId = "User1";
     this.distanceToTarget = 1000;

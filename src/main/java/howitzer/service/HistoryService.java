@@ -7,10 +7,10 @@ import howitzer.beans.HowitzerHistory;
 
 public interface HistoryService {
 
-  public int getCount(Connection conn) 
+  public int getCount(Connection conn, String schUserId) 
       throws SQLException;
 
-  public List<HowitzerHistory> getHistory(Connection conn, int fRow, int pagSiz)
+  public List<HowitzerHistory> getHistory(Connection conn, int fRow, int pagSiz, String schUserId)
       throws SQLException;
   
 }

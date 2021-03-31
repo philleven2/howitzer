@@ -40,6 +40,9 @@ int fromRw = Integer.parseInt(fromRow);
 // To row
 String toRow = (String) request.getAttribute("toRow");
 int toRw = Integer.parseInt(toRow);
+
+// Search
+String schUserId = (String) request.getAttribute("schUserId");
 %>
 
 </head>
@@ -120,60 +123,91 @@ int toRw = Integer.parseInt(toRow);
 
 		</form>
 
+	<!-- Search -->
+	<form name="frmSearch" action="history" method="get" onSubmit="return">
+
+		<table class="table table-borderless" 
+			style="margin-top: 5px; font-size: 12px; width: 60% !important;">
+		
+			<tr>
+				<td>User Id</td>
+				<td><input name="schUserId" type="text" size="50" maxlength="50" value="<%= schUserId %>"></td>
+
+				<td colspan="4">
+				<!-- Search -->
+				<button class="btn btn-sm btn-primary" name="btnSearch" onclick="submitForm(this); return false;">Search</button>
+				
+				<!-- Clear -->
+				<button class="btn btn-sm btn-primary" name="btnClear" onclick="clearSearch(); return false;">Clear</button>
+				</td>
+			</tr>
+
+		</table>
+		
+	</form>
+
 		<div id="MsgDiv" class="msgDiv">${msg}</div>
 
 	</div>
 
-	<script type="text/javascript">
-<!--
-
-// Submit form
-function submitForm(e) {
+	<script>
 
 	// Submit form
-	frmSearch.submit();
-
-}
-
-// Enable/disable page up
-if (<%= fromRw %> > <%= pagSiz - 1 %>) {
-
-	document.frmView.btnPageUp.disabled = false;
+	function submitForm(e) {
 	
-} else {
-
-	document.frmView.btnPageUp.disabled = true;
-
-}
-
-// Enable/disable page down
-if (<%= toRw %> < <%= nbrRws %>) {
-
-	document.frmView.btnPageDown.disabled = false;
+		// Submit form
+		frmSearch.submit();
 	
-} else {
-
-
-	document.frmView.btnPageDown.disabled = true;
-
-}
-
-// Page up
-function pageUp() {
-
-	window.location = "/howitzer/history?mv=PageUp&fromRow=<%= fromRow %>&toRow=<%= toRow %>";
+	}
 	
-}
+	// Clear search
+	function clearSearch() {
 
-// Page down
-function pageDown() {
+		document.frmSearch.schUserId.style.backgroundColor = "white";
+		document.frmSearch.schUserId.value = "";
 
-	window.location = "/howitzer/history?mv=PageDown&fromRow=<%= fromRow %>&toRow=<%= toRow %>";
+		$("#MsgDiv").empty();
+		
+	}
 
-}
-
--->	
-</script>
+	// Enable/disable page up
+	if (<%= fromRw %> > <%= pagSiz - 1 %>) {
+	
+		document.frmView.btnPageUp.disabled = false;
+		
+	} else {
+	
+		document.frmView.btnPageUp.disabled = true;
+	
+	}
+	
+	// Enable/disable page down
+	if (<%= toRw %> < <%= nbrRws %>) {
+	
+		document.frmView.btnPageDown.disabled = false;
+		
+	} else {
+	
+	
+		document.frmView.btnPageDown.disabled = true;
+	
+	}
+	
+	// Page up
+	function pageUp() {
+	
+		window.location = "/howitzer/history?mv=PageUp&fromRow=<%= fromRow %>&toRow=<%= toRow %>&schUserId=<%= schUserId %>";
+		
+	}
+	
+	// Page down
+	function pageDown() {
+	
+		window.location = "/howitzer/history?mv=PageDown&fromRow=<%= fromRow %>&toRow=<%= toRow %>&schUserId=<%= schUserId %>";
+	
+	}
+	
+	</script>
 
 </body>
 

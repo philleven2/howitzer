@@ -28,7 +28,7 @@ public class HistoryServiceImpl implements HistoryService {
   }
 
   @Override
-  public int getCount(Connection conn) 
+  public int getCount(Connection conn, String schUserId) 
       throws SQLException {
 
     int cntr = 0;
@@ -36,7 +36,7 @@ public class HistoryServiceImpl implements HistoryService {
     try {
 
       // Get number of rows
-      cntr = howitzerHistoryDAO.getCount(conn);
+      cntr = howitzerHistoryDAO.getCount(conn, schUserId);
 
     } catch (SQLException e) {
 
@@ -49,7 +49,7 @@ public class HistoryServiceImpl implements HistoryService {
   }
 
   @Override
-  public List<HowitzerHistory> getHistory(Connection conn, int fRow, int pagSiz)
+  public List<HowitzerHistory> getHistory(Connection conn, int fRow, int pagSiz, String schUserId)
       throws SQLException {
 
     List<HowitzerHistory> howitzerHistory = null;
@@ -57,7 +57,7 @@ public class HistoryServiceImpl implements HistoryService {
     try {
 
       // Get history
-      howitzerHistory = howitzerHistoryDAO.getHistory(conn, fRow, pagSiz);
+      howitzerHistory = howitzerHistoryDAO.getHistory(conn, fRow, pagSiz, schUserId);
 
     } catch (SQLException e) {
 

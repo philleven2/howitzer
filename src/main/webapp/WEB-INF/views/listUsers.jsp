@@ -98,9 +98,17 @@ int toRw = Integer.parseInt(toRow);
 						<td colspan="6">
 							<!-- Back -->
 							<button class="btn btn-sm btn-primary"
-								onclick="location.href='back'; return false;">Back</button> <!-- Page up -->
+								onclick="location.href='back'; return false;">Back</button> 
+								
+							<!-- Add -->
+							<button class="btn btn-sm btn-primary"
+								onclick="location.href='user?firstRow=<%= fromRow %>'; return false;">Add</button>
+								
+							<!-- Page up -->
 							<button class="btn btn-sm btn-primary" name="btnPageUp"
-								onclick="pageUp(); return false;">Page Up</button> <!-- Page down -->
+								onclick="pageUp(); return false;">Page Up</button> 
+								
+							<!-- Page down -->
 							<button class="btn btn-sm btn-primary" name="btnPageDown"
 								onclick="pageDown(); return false;">Page Down</button>
 						</td>

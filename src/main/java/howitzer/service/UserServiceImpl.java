@@ -193,4 +193,44 @@ public class UserServiceImpl implements UserService {
       
     }
 
+  @Override
+  public int insertUser(Connection conn, String userId, int shots, int hits, int misses, BigDecimal avgHits, int userRank) 
+      throws SQLException {
+    
+    int cntr = 0;
+    
+    try {
+
+      // Does user already exist
+      Users user = usersDAO.getUser(conn, userId);
+
+      // If user not found
+      if (user.getUserId() == null) {
+
+        // Insert row
+        cntr = usersDAO.insertUser(conn, userId, shots, hits, misses, avgHits, userRank);
+
+        // Rank users
+        rankUsers(conn);
+
+      // If user found
+      } else {
+
+        cntr = 0;
+
+      }
+
+    } catch (SQLException e) {
+
+      log.error(e.getMessage(), e);
+      e.printStackTrace();
+
+      throw e;
+
+    }
+
+    return cntr;
+    
+  }
+
 }

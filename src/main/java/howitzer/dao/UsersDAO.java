@@ -10,6 +10,7 @@ import java.util.List;
 import org.apache.log4j.Logger;
 import howitzer.beans.Users;
 import howitzer.resources.HowitzerBundle;
+import howitzer.util.ConnectionUtil;
 
 public class UsersDAO {
 
@@ -38,7 +39,7 @@ public class UsersDAO {
       // If result set is not empty
       if (rs.next()) {
 
-        cntr = rs.getInt("CNTR") - 1;
+        cntr = rs.getInt("CNTR");
 
       }
 
@@ -276,7 +277,7 @@ public class UsersDAO {
 
     try {
 
-        // SELECT userId, shots, hits, misses, avgHits, userRank from Users order by avgHits DESC LIMIT ?, ?;
+        // SELECT userId, shots, hits, misses, avgHits, userRank from Users order by avgHits DESC, userId ASC LIMIT ?, ?;
         ps = conn.prepareStatement(HowitzerBundle.getValueForKey2("get.users.ranks.paging"));
 
         ps.setInt(1, fRow);
@@ -565,6 +566,104 @@ public class UsersDAO {
         log.error("Error: " + e.getMessage());
 
       }
+
+    }
+
+    return cntr;
+
+  }
+
+  /**
+   * @param conn
+   * @param userId
+   * @return
+   * @throws SQLException
+   */
+  public boolean doesUserExist(Connection conn, String userId) throws SQLException {
+    
+    PreparedStatement ps = null;
+    ResultSet rs = null;
+
+    boolean userExists = false;
+
+    try {
+
+      // SELECT userId FROM Users WHERE userId = ?
+      ps = conn.prepareStatement(HowitzerBundle.getValueForKey2("does.user.exist"));
+      ps.setString(1, userId);
+
+      rs = ps.executeQuery();
+
+      if (rs.next()) {
+
+        userExists = true;
+        
+      }
+
+    } catch (SQLException e) {
+
+      log.error("Error: " + e.getMessage());
+      e.printStackTrace();
+
+      throw e;
+
+    } finally {
+      
+      // Close PreparedStatement
+      ConnectionUtil.closePreparedStatement(ps);
+
+      // Close ResultSet
+      ConnectionUtil.closeResultSet(rs);
+
+    }
+
+    return userExists;
+
+  }
+
+  /**
+   * @param conn
+   * @param userId
+   * @param shots
+   * @param hits
+   * @param misses
+   * @param avgHits
+   * @param userRank
+   * @return
+   * @throws SQLException
+   */
+  public int insertUser(Connection conn, String userId, int shots, int hits, int misses,
+      BigDecimal avgHits, int userRank) throws SQLException {
+
+    PreparedStatement ps = null;
+
+    int cntr = 0;
+
+    try {
+
+      // INSERT INTO Users (userId, shots, hits, misses, avgHits, userRank) VALUES(?, ?, ?, ?, ?, ?)
+      ps = conn.prepareStatement(HowitzerBundle.getValueForKey2("insert.user"));
+      ps.setString(1, userId);
+      ps.setInt(2, shots);
+      ps.setInt(3, hits);
+      ps.setInt(4, misses);
+      ps.setBigDecimal(5, avgHits);
+      ps.setInt(6, userRank);
+
+      // Insert row
+      cntr = ps.executeUpdate();
+
+    } catch (SQLException e) {
+
+      log.error("Error: " + e.getMessage());
+      e.printStackTrace();
+
+      throw e;
+
+    } finally {
+      
+      // Close PreparedStatement
+      ConnectionUtil.closePreparedStatement(ps);
 
     }
 

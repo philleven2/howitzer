@@ -20,6 +20,13 @@
 
 	<dependencies>
 
+		<!-- Commons -->
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+			<version>3.9</version> 
+		</dependency>
+		
 		<!-- MySQL -->
 		<dependency>
 			<groupId>mysql</groupId>
@@ -139,6 +146,14 @@
 			<version>${springsecurity.version}</version>
 		</dependency>
 
+		<!-- JUnit -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.12</version>
+			<scope>test</scope>
+		</dependency>
+		
 	</dependencies>
 
 	<build>

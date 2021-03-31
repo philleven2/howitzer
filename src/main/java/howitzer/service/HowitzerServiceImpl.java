@@ -197,7 +197,7 @@ public class HowitzerServiceImpl implements HowitzerService {
       double numberOfHits = hits;
       double avg = numberOfHits / shots;
       
-      // CalculateRank
+      // Calculate rank
       rank = userService.calcRank(conn, userId);
       
       // Update user

@@ -80,10 +80,11 @@ public class HowitzerHistoryDAO {
 
   /**
    * @param conn
+   * @param schUserId
    * @return
    * @throws SQLException
    */
-  public int getCount(Connection conn) throws SQLException {
+  public int getCount(Connection conn, String schUserId) throws SQLException {
 
     PreparedStatement ps = null;
     ResultSet rs = null;
@@ -93,8 +94,21 @@ public class HowitzerHistoryDAO {
 
     try {
 
+      // If no search
+      if (schUserId.isEmpty()) {
+        
         // SELECT COUNT(1) cntr FROM HowitzerHistory
         ps = conn.prepareStatement(HowitzerBundle.getValueForKey2("get.history.count"));
+        
+      // If search user Id  
+      } else {
+
+        // SELECT COUNT(1) cntr FROM HowitzerHistory WHERE userId LIKE ?
+        ps = conn.prepareStatement(HowitzerBundle.getValueForKey2("get.history.count.search.user.id"));
+
+        ps.setString(1, "%" + schUserId + "%");
+        
+      }
 
       rs = ps.executeQuery();
 
@@ -139,10 +153,11 @@ public class HowitzerHistoryDAO {
    * @param conn
    * @param fRow
    * @param pagSiz
+   * @param schUserId
    * @return
    * @throws SQLException
    */
-  public List<HowitzerHistory> getHistory(Connection conn, int fRow, int pagSiz)
+  public List<HowitzerHistory> getHistory(Connection conn, int fRow, int pagSiz, String schUserId)
       throws SQLException {
 
     PreparedStatement ps = null;
@@ -183,12 +198,28 @@ public class HowitzerHistoryDAO {
 
     try {
 
+      // If no search
+      if (schUserId.isEmpty()) {
+        
         // SELECT userId, distanceToTarget, angle, velocity, targetSize, result, distanceTraveled, distanceMissedBy, 
         // timeTraveled, timeStamp from HowitzerHistory LIMIT ?, ?
         ps = conn.prepareStatement(HowitzerBundle.getValueForKey2("get.history.paging"));
 
         ps.setInt(1, fRow);
         ps.setInt(2, pagSiz);
+      
+      // If search user id
+      } else {
+
+        // SELECT userId, distanceToTarget, angle, velocity, targetSize, result, distanceTraveled, distanceMissedBy, 
+        // timeTraveled, timeStamp from HowitzerHistory WHERE userID LIKE ? LIMIT ?, ?
+        ps = conn.prepareStatement(HowitzerBundle.getValueForKey2("get.history.paging.search.user.id"));
+
+        ps.setString(1, "%" + schUserId + "%");
+        ps.setInt(2, fRow);
+        ps.setInt(3, pagSiz);
+        
+      }
 
       rs = ps.executeQuery();
 
