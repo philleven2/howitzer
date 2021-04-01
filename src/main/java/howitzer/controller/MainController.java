@@ -61,13 +61,22 @@ public class MainController {
 
     }
 
+    // If logout
+    if (logout != null) {
+
+      model.addObject("error", "Successfully logged out.");
+
+    }
+
     model.setViewName("login");
     return model;
     
   }
 
-  @RequestMapping(value = {"/logout"}, method = RequestMethod.GET)
-  public String logout(HttpServletRequest request, HttpServletResponse response) {
+  @RequestMapping(value = {"/perform_logout"}, method = RequestMethod.GET)
+  public ModelAndView logout(HttpServletRequest request, HttpServletResponse response) {
+    
+    ModelAndView model = new ModelAndView();
     
     HttpSession session = request.getSession(false);
     SecurityContextHolder.clearContext();
@@ -85,7 +94,10 @@ public class MainController {
         
     }
 
-    return "logout";
+    model.addObject("error", "Successfully logged out.");
+    model.setViewName("login");
+    
+    return model;
       
   }
 

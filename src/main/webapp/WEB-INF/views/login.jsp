@@ -19,7 +19,7 @@
 <link href="static/theme/login.css" rel="stylesheet" type="text/css">
 
 <!-- JS dependencies -->
-<script src="/howitzer/static/js/jquery-3.4.1.min.js"></script>
+<script src="/howitzer/static/js/jquery-3.6.0.min.js"></script>
 <script src="/howitzer/static/js/bootstrap.min.js"></script>
 
 <title>Howitzer Login</title>

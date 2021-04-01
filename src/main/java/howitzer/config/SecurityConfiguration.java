@@ -74,19 +74,20 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         .authorizeRequests().antMatchers("/").access("hasRole('ADMIN')").and()
 
         // Configure login form.
-        .formLogin().loginPage("/login").failureUrl("/login?error").usernameParameter("username")
+        .formLogin().loginPage("/login").failureUrl("/login?error=true").usernameParameter("username")
         .passwordParameter("password").and()
 
+        // Use MainController.java for logout.
         // Configure the logout page.  
-        .logout().logoutSuccessUrl("/login?logout").invalidateHttpSession(true).deleteCookies("JSESSIONID").and()
-
+        //.logout().logoutUrl("/perform_logout").logoutSuccessUrl("/login?logout=true").invalidateHttpSession(true).deleteCookies("JSESSIONID").and()
+        
         // In Spring 4.x upwards we need to explicitly
         // disable CSRF (as below) or alternatively add some HTML to the page to enable CSRF.
-        .csrf().disable()
+        .csrf().disable();
 
         // session management is used to ensure the user only has one session.
-        .sessionManagement().invalidSessionUrl("/login?time=1").maximumSessions(1);
+        //.sessionManagement().invalidSessionUrl("/login?time=1").maximumSessions(1);
 
   }
-
+  
 }

@@ -23,7 +23,7 @@
 <title>Howitzer</title>
 
 <!-- JS dependencies -->
-<script src="static/js/jquery-3.4.1.min.js"></script>
+<script src="static/js/jquery-3.6.0.min.js"></script>
 <script src="static/js/popper.min.js"></script>
 <script src="static/js/bootstrap.min.js"></script>
 <script src="static/js/bootbox.min.js"></script>
@@ -73,7 +73,7 @@ String selUserId = (String) request.getAttribute("selUserId");
 				data-toggle="tooltip" title="Refresh dashboard.">Refresh</button>
 		</form>
 
-	   	<form class="form-inline" name="frmLogout" action="logout" method="GET">
+	   	<form class="form-inline" name="frmLogout" action="perform_logout" method="GET">
 		    <button class="btn btn-sm btn-default" type="submit"
 		    data-toggle="tooltip" title="Logout.">Logout</button>
 		</form>
@@ -233,8 +233,7 @@ String selUserId = (String) request.getAttribute("selUserId");
 
 	</div>
 
-	<script type="text/javascript">
-	<!--
+	<script>
 	
 	// Cursor on user id
 	document.frmUpdate.userId.focus();
@@ -433,7 +432,6 @@ String selUserId = (String) request.getAttribute("selUserId");
 	
 	}
 
-	-->	
 	</script>
 
 </body>
