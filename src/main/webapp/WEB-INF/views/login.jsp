@@ -40,10 +40,10 @@ body {
 
 		<div id="login-box">
 
-			<h3>
-				<img src="static/image/smart.jpg" alt="Howitzer" width="100"
+			<h4>
+				<img src="static/image/savvas.jpg" alt="Howitzer" width="100"
 					height="43"> &nbsp;&nbsp;Howitzer Login
-			</h3>
+			</h4>
 
 			<h6>Login with Username and Password</h6>
 

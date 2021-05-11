@@ -52,37 +52,31 @@ String selUserId = (String) request.getAttribute("selUserId");
 
 		<form class="form-inline" name="frmUsers" action="users" method="GET">
 			<button class="btn btn-sm btn-default" type="submit"
-				data-toggle="tooltip" title="View users.">Users</button>
+			data-bs-toggle="tooltip" data-bs-placement="top" title="View users.">Users</button>
 		</form>
 
 		<form class="form-inline" name="frmHistory" action="history"
 			method="GET">
 			<button class="btn btn-sm btn-default" type="submit"
-				data-toggle="tooltip" title="View history.">History</button>
+				data-bs-toggle="tooltip" data-bs-placement="top" title="View history.">History</button>
 		</form>
 
 		<form class="form-inline" name="frmLogs" action="logs" method="GET">
 		    <button class="btn btn-sm btn-default" type="submit"
-		    data-toggle="tooltip" title="View logs.">Logs</button>
+		    data-bs-toggle="tooltip" data-bs-placement="top" title="View logs.">Logs</button>
 		</form>
 
 		<form class="form-inline" name="frmRefresh" action="back" method="GET">
 			<button class="btn btn-sm btn-default" type="submit"
-				data-toggle="tooltip" title="Refresh dashboard.">Refresh</button>
-		</form>
-
-	   	<form class="form-inline" name="frmS3" action="upload" method="GET">
-		    <button class="btn btn-sm btn-default" type="submit"
-		    data-toggle="tooltip" title="Upload to S3.">Upload to S3</button>
+				data-bs-toggle="tooltip" data-bs-placement="top" title="Refresh dashboard.">Refresh</button>
 		</form>
 
 	   	<form class="form-inline" name="frmLogout" action="perform_logout" method="GET">
 		    <button class="btn btn-sm btn-default" type="submit"
-		    data-toggle="tooltip" title="Logout.">Logout</button>
+		    data-bs-toggle="tooltip" data-bs-placement="top" title="Logout.">Logout</button>
 		</form>
 
 	</nav>
-
 
 	<div class="container-fluid" style="margin-top: 20px;">
 
@@ -242,11 +236,11 @@ String selUserId = (String) request.getAttribute("selUserId");
 	document.frmUpdate.userId.focus();
 
 	// Tool tips
-	$(document).ready(function() {
-		
-		  $('[data-toggle="tooltip"]').tooltip(); 
-		  
-	});
+	var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+	
+	var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+  		return new bootstrap.Tooltip(tooltipTriggerEl)
+	})	
 	
 	// Confirm selection
 	function confirmSelection (form, msg) {
