@@ -1,9 +1,4 @@
-*.iml
-*.swp
 .DS_Store
-/.idea/
-node/
-node_modules/
 target/
 
 /bin/
@@ -15,6 +10,4 @@ temp
 *.project
 /.metadata/
 /RemoteSystemsTempFiles/
-*.checkstyle
-*.pmd
 *.xml

@@ -59,6 +59,5 @@ Notes:
 Create .war file:
 1. Open terminal
    a. cd /Users/phil/Dev/Howitzer/Howitzer
-   b. mvn clean install
-
-
+   c. export JAVA_HOME=$(/usr/libexec/java_home -v 1.8.0)
+   d. mvn clean install
