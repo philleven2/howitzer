@@ -26,7 +26,6 @@
 <script src="static/js/jquery-3.6.0.min.js"></script>
 <script src="static/js/popper.min.js"></script>
 <script src="static/js/bootstrap.min.js"></script>
-<script src="static/js/bootbox.min.js"></script>
 
 <%
 String selUserId = (String) request.getAttribute("selUserId");
@@ -52,28 +51,28 @@ String selUserId = (String) request.getAttribute("selUserId");
 
 		<form class="form-inline" name="frmUsers" action="users" method="GET">
 			<button class="btn btn-sm btn-default" type="submit"
-			data-bs-toggle="tooltip" data-bs-placement="top" data-bs-animation=true title="View users.">Users</button>
+			data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-animation=true title="View users.">Users</button>
 		</form>
 
 		<form class="form-inline" name="frmHistory" action="history"
 			method="GET">
 			<button class="btn btn-sm btn-default" type="submit"
-				data-bs-toggle="tooltip" data-bs-placement="top" data-bs-animation=true title="View history.">History</button>
+				data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-animation=true title="View history.">History</button>
 		</form>
 
 		<form class="form-inline" name="frmLogs" action="logs" method="GET">
 		    <button class="btn btn-sm btn-default" type="submit"
-		    data-bs-toggle="tooltip" data-bs-placement="top" data-bs-animation=true title="View logs.">Logs</button>
+		    data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-animation=true title="View logs.">Logs</button>
 		</form>
 
 		<form class="form-inline" name="frmRefresh" action="back" method="GET">
 			<button class="btn btn-sm btn-default" type="submit"
-				data-bs-toggle="tooltip" data-bs-placement="top" data-bs-animation=true title="Refresh dashboard.">Refresh</button>
+				data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-animation=true title="Refresh dashboard.">Refresh</button>
 		</form>
 
 	   	<form class="form-inline" name="frmLogout" action="perform_logout" method="GET">
 		    <button class="btn btn-sm btn-default" type="submit"
-		    data-bs-toggle="tooltip" data-bs-placement="top" data-bs-animation=true title="Logout.">Logout</button>
+		    data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-animation=true title="Logout.">Logout</button>
 		</form>
 
 	</nav>
