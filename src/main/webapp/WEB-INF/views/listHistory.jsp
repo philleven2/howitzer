@@ -60,7 +60,7 @@ String schUserId = (String) request.getAttribute("schUserId");
 
 					<tr style="background: menu">
 						<td colspan="10" class="font-weight-bold"><img
-							src="static/image/smart.jpg" alt="Howitzer" width="100"
+							src="static/image/savvas.jpg" alt="Howitzer" width="100"
 							height="43"> &nbsp;&nbsp;View History</td>
 					</tr>
 

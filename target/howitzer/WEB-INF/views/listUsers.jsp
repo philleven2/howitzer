@@ -21,7 +21,7 @@
 <title>View Users</title>
 
 <!-- JS dependencies -->
-<script src="static/js/jquery-3.4.1.min.js"></script>
+<script src="static/js/jquery-3.6.0.min.js"></script>
 <script src="static/js/bootstrap.min.js"></script>
 
 <%
@@ -98,9 +98,17 @@ int toRw = Integer.parseInt(toRow);
 						<td colspan="6">
 							<!-- Back -->
 							<button class="btn btn-sm btn-primary"
-								onclick="location.href='back'; return false;">Back</button> <!-- Page up -->
+								onclick="location.href='back'; return false;">Back</button> 
+								
+							<!-- Add -->
+							<button class="btn btn-sm btn-primary"
+								onclick="location.href='user?firstRow=<%= fromRow %>'; return false;">Add</button>
+								
+							<!-- Page up -->
 							<button class="btn btn-sm btn-primary" name="btnPageUp"
-								onclick="pageUp(); return false;">Page Up</button> <!-- Page down -->
+								onclick="pageUp(); return false;">Page Up</button> 
+								
+							<!-- Page down -->
 							<button class="btn btn-sm btn-primary" name="btnPageDown"
 								onclick="pageDown(); return false;">Page Down</button>
 						</td>
@@ -116,55 +124,53 @@ int toRw = Integer.parseInt(toRow);
 
 	</div>
 
-	<script type="text/javascript">
-<!--
-
-// Submit form
-function submitForm(e) {
+	<script>
 
 	// Submit form
-	frmSearch.submit();
-
-}
-
-// Enable/disable page up
-if (<%= fromRw %> > <%= pagSiz - 1 %>) {
-
-	document.frmView.btnPageUp.disabled = false;
+	function submitForm(e) {
 	
-} else {
-
-	document.frmView.btnPageUp.disabled = true;
-
-}
-
-// Enable/disable page down
-if (<%= toRw %> < <%= nbrRws %>) {
-
-	document.frmView.btnPageDown.disabled = false;
+		// Submit form
+		frmSearch.submit();
 	
-} else {
-
-
-	document.frmView.btnPageDown.disabled = true;
-
-}
-
-// Page up
-function pageUp() {
-
-	window.location = "/howitzer/users?mv=PageUp&fromRow=<%= fromRow %>&toRow=<%= toRow %>";
+	}
 	
-}
+	// Enable/disable page up
+	if (<%= fromRw %> > <%= pagSiz - 1 %>) {
+	
+		document.frmView.btnPageUp.disabled = false;
+		
+	} else {
+	
+		document.frmView.btnPageUp.disabled = true;
+	
+	}
+	
+	// Enable/disable page down
+	if (<%= toRw %> < <%= nbrRws %>) {
+	
+		document.frmView.btnPageDown.disabled = false;
+		
+	} else {
+	
+	
+		document.frmView.btnPageDown.disabled = true;
+	
+	}
+	
+	// Page up
+	function pageUp() {
+	
+		window.location = "/howitzer/users?mv=PageUp&fromRow=<%= fromRow %>&toRow=<%= toRow %>";
+		
+	}
+	
+	// Page down
+	function pageDown() {
+	
+		window.location = "/howitzer/users?mv=PageDown&fromRow=<%= fromRow %>&toRow=<%= toRow %>";
+	
+	}
 
-// Page down
-function pageDown() {
-
-	window.location = "/howitzer/users?mv=PageDown&fromRow=<%= fromRow %>&toRow=<%= toRow %>";
-
-}
-
--->	
 </script>
 
 </body>

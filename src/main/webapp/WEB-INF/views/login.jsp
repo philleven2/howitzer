@@ -15,12 +15,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <!-- CSS dependencies -->
-<link href="/howitzer/static/theme/bootstrap.min.css" rel="stylesheet">
+<link href="static/theme/bootstrap.min.css" rel="stylesheet">
 <link href="static/theme/login.css" rel="stylesheet" type="text/css">
 
 <!-- JS dependencies -->
-<script src="/howitzer/static/js/jquery-3.6.0.min.js"></script>
-<script src="/howitzer/static/js/bootstrap.min.js"></script>
+<script src="static/js/jquery-3.6.0.min.js"></script>
+<script src="static/js/bootstrap.min.js"></script>
 
 <title>Howitzer Login</title>
 

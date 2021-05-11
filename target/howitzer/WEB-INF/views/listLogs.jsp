@@ -20,7 +20,7 @@
 <title>View Logs</title>
 
 <!-- JS dependencies -->
-<script src="static/js/jquery-3.4.1.min.js"></script>
+<script src="static/js/jquery-3.6.0.min.js"></script>
 <script src="static/js/bootstrap.min.js"></script>
 <script src="static/js/bootbox.min.js"></script>
 
@@ -59,7 +59,7 @@ String schText = (String) request.getAttribute("schText");
 			
 				<tr style="background: menu">
 					<td colspan="4" class="font-weight-bold">
-						<img src="static/image/smart.jpg" alt="Howitzer" width="100"
+						<img src="static/image/savvas.jpg" alt="Howitzer" width="100"
 							height="43"> &nbsp;&nbsp;View Logs
 					</td>
 				</tr>

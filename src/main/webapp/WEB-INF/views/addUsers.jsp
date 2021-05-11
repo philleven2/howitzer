@@ -43,7 +43,7 @@ String msg = "";
 <div class="container-fluid">
 
 	<h5 class="col-md-offset-1">
-		<img src="static/image/smart.jpg" alt="Howitzer" width="100" height="43">
+		<img src="static/image/savvas.jpg" alt="Howitzer" width="100" height="43">
 		<small class="text-muted">Add User</small>			
 	</h5>
 

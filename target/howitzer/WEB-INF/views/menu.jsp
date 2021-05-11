@@ -23,7 +23,7 @@
 <title>Howitzer</title>
 
 <!-- JS dependencies -->
-<script src="static/js/jquery-3.4.1.min.js"></script>
+<script src="static/js/jquery-3.6.0.min.js"></script>
 <script src="static/js/popper.min.js"></script>
 <script src="static/js/bootstrap.min.js"></script>
 <script src="static/js/bootbox.min.js"></script>
@@ -32,14 +32,12 @@
 String selUserId = (String) request.getAttribute("selUserId");
 %>
 
-<script type="text/javascript">
-<!--
+<script>
 
 	$.getScript("static/js/trimAll.js");
 	
 	$("#MsgDiv").empty();
 	
--->
 </script>
 
 </head>
@@ -48,7 +46,7 @@ String selUserId = (String) request.getAttribute("selUserId");
 
 	<nav class="navbar navbar-light py-0 justify-content-start">
 	
-		<span class="navbar-brand navbar-text"><img src="static/image/smart.jpg" alt="HOwitzer" width="100" height="43">
+		<span class="navbar-brand navbar-text"><img src="static/image/savvas.jpg" alt="Howitzer" width="100" height="43">
 			&nbsp;&nbsp; Howitzer v1.0.0
 		</span>          
 
@@ -73,7 +71,12 @@ String selUserId = (String) request.getAttribute("selUserId");
 				data-toggle="tooltip" title="Refresh dashboard.">Refresh</button>
 		</form>
 
-	   	<form class="form-inline" name="frmLogout" action="logout" method="POST">
+	   	<form class="form-inline" name="frmS3" action="upload" method="GET">
+		    <button class="btn btn-sm btn-default" type="submit"
+		    data-toggle="tooltip" title="Upload to S3.">Upload to S3</button>
+		</form>
+
+	   	<form class="form-inline" name="frmLogout" action="perform_logout" method="GET">
 		    <button class="btn btn-sm btn-default" type="submit"
 		    data-toggle="tooltip" title="Logout.">Logout</button>
 		</form>
@@ -233,8 +236,7 @@ String selUserId = (String) request.getAttribute("selUserId");
 
 	</div>
 
-	<script type="text/javascript">
-	<!--
+	<script>
 	
 	// Cursor on user id
 	document.frmUpdate.userId.focus();
@@ -433,7 +435,6 @@ String selUserId = (String) request.getAttribute("selUserId");
 	
 	}
 
-	-->	
 	</script>
 
 </body>

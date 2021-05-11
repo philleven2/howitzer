@@ -32,14 +32,12 @@
 String selUserId = (String) request.getAttribute("selUserId");
 %>
 
-<script type="text/javascript">
-<!--
+<script>
 
 	$.getScript("static/js/trimAll.js");
 	
 	$("#MsgDiv").empty();
 	
--->
 </script>
 
 </head>
@@ -48,7 +46,7 @@ String selUserId = (String) request.getAttribute("selUserId");
 
 	<nav class="navbar navbar-light py-0 justify-content-start">
 	
-		<span class="navbar-brand navbar-text"><img src="static/image/smart.jpg" alt="HOwitzer" width="100" height="43">
+		<span class="navbar-brand navbar-text"><img src="static/image/savvas.jpg" alt="Howitzer" width="100" height="43">
 			&nbsp;&nbsp; Howitzer v1.0.0
 		</span>          
 
@@ -71,6 +69,11 @@ String selUserId = (String) request.getAttribute("selUserId");
 		<form class="form-inline" name="frmRefresh" action="back" method="GET">
 			<button class="btn btn-sm btn-default" type="submit"
 				data-toggle="tooltip" title="Refresh dashboard.">Refresh</button>
+		</form>
+
+	   	<form class="form-inline" name="frmS3" action="upload" method="GET">
+		    <button class="btn btn-sm btn-default" type="submit"
+		    data-toggle="tooltip" title="Upload to S3.">Upload to S3</button>
 		</form>
 
 	   	<form class="form-inline" name="frmLogout" action="perform_logout" method="GET">

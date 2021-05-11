@@ -59,7 +59,7 @@ String schText = (String) request.getAttribute("schText");
 			
 				<tr style="background: menu">
 					<td colspan="4" class="font-weight-bold">
-						<img src="static/image/smart.jpg" alt="Howitzer" width="100"
+						<img src="static/image/savvas.jpg" alt="Howitzer" width="100"
 							height="43"> &nbsp;&nbsp;View Logs
 					</td>
 				</tr>

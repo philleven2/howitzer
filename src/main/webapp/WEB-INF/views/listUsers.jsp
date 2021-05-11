@@ -124,55 +124,53 @@ int toRw = Integer.parseInt(toRow);
 
 	</div>
 
-	<script type="text/javascript">
-<!--
-
-// Submit form
-function submitForm(e) {
+	<script>
 
 	// Submit form
-	frmSearch.submit();
-
-}
-
-// Enable/disable page up
-if (<%= fromRw %> > <%= pagSiz - 1 %>) {
-
-	document.frmView.btnPageUp.disabled = false;
+	function submitForm(e) {
 	
-} else {
-
-	document.frmView.btnPageUp.disabled = true;
-
-}
-
-// Enable/disable page down
-if (<%= toRw %> < <%= nbrRws %>) {
-
-	document.frmView.btnPageDown.disabled = false;
+		// Submit form
+		frmSearch.submit();
 	
-} else {
-
-
-	document.frmView.btnPageDown.disabled = true;
-
-}
-
-// Page up
-function pageUp() {
-
-	window.location = "/howitzer/users?mv=PageUp&fromRow=<%= fromRow %>&toRow=<%= toRow %>";
+	}
 	
-}
+	// Enable/disable page up
+	if (<%= fromRw %> > <%= pagSiz - 1 %>) {
+	
+		document.frmView.btnPageUp.disabled = false;
+		
+	} else {
+	
+		document.frmView.btnPageUp.disabled = true;
+	
+	}
+	
+	// Enable/disable page down
+	if (<%= toRw %> < <%= nbrRws %>) {
+	
+		document.frmView.btnPageDown.disabled = false;
+		
+	} else {
+	
+	
+		document.frmView.btnPageDown.disabled = true;
+	
+	}
+	
+	// Page up
+	function pageUp() {
+	
+		window.location = "/howitzer/users?mv=PageUp&fromRow=<%= fromRow %>&toRow=<%= toRow %>";
+		
+	}
+	
+	// Page down
+	function pageDown() {
+	
+		window.location = "/howitzer/users?mv=PageDown&fromRow=<%= fromRow %>&toRow=<%= toRow %>";
+	
+	}
 
-// Page down
-function pageDown() {
-
-	window.location = "/howitzer/users?mv=PageDown&fromRow=<%= fromRow %>&toRow=<%= toRow %>";
-
-}
-
--->	
 </script>
 
 </body>
