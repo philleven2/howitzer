@@ -555,6 +555,8 @@ public class MainController {
 
     ModelAndView model = new ModelAndView("menu");
 
+    FireShot fireShot = null;
+
     try (Connection conn = ConnectionUtil.getConnection();) {
 
       // Truncate logs
@@ -566,7 +568,12 @@ public class MainController {
       // get users
       users = userService.getUsers(conn);
 
+      fireShot = new FireShot();
+
+      model = new ModelAndView("menu", "fireShot", fireShot);
+      model.addObject("selUserId", fireShot.getUserId());
       model.addObject("users", users);
+      model.addObject("distance", fireShot.getDistanceToTarget());
       model.addObject("msg", "Logs table truncated.");
 
     } catch (SQLException e) {
