@@ -160,6 +160,10 @@ public class LogsDAO {
 
   }
 
+  /**
+   * @param conn
+   * @throws SQLException
+   */
   public void truncateLogs(Connection conn) throws SQLException {
     
     PreparedStatement ps = null;
@@ -168,11 +172,9 @@ public class LogsDAO {
 
     try {
       
-      // Truncate tables
       sql = "SET FOREIGN_KEY_CHECKS = 0;";
       ps = conn.prepareStatement(sql);
       ps.executeUpdate();
-
       
       // Truncate Logs
       sql = "TRUNCATE TABLE Logs";
