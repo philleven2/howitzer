@@ -56,7 +56,7 @@ int toRw = Integer.parseInt(toRow);
 				<tbody>
 
 					<tr style="background: menu">
-						<td colspan="6" class="font-weight-bold"><img
+						<td colspan="7" class="font-weight-bold"><img
 							src="static/image/smart.jpg" alt="Howitzer" width="100"
 							height="43"> &nbsp;&nbsp;View Users</td>
 					</tr>
@@ -68,6 +68,7 @@ int toRw = Integer.parseInt(toRow);
 						<td align="right">Misses</td>
 						<td align="right">Average hits</td>
 						<td align="right">Rank</td>
+						<td>Action</td>
 					</tr>
 
 					<c:if test="${not empty users}">
@@ -81,6 +82,8 @@ int toRw = Integer.parseInt(toRow);
 								<td valign="top" align="right">${user.misses}</td>
 								<td valign="top" align="right">${user.avgHits}</td>
 								<td valign="top" align="right">${user.rank}</td>
+								<td class="col-md-1"><button class="btn btn-link button3"
+									onclick="confirmDelete('${user.userId}'); return false;">Delete</button></td>
 							</tr>
 
 						</c:forEach>
@@ -95,7 +98,7 @@ int toRw = Integer.parseInt(toRow);
 					</c:if>
 
 					<tr style="background: menu">
-						<td colspan="6">
+						<td colspan="7">
 							<!-- Back -->
 							<button class="btn btn-sm btn-primary"
 								onclick="location.href='back'; return false;">Back</button> 
@@ -171,6 +174,21 @@ int toRw = Integer.parseInt(toRow);
 	
 	}
 
+	// Confirm delete
+	function confirmDelete (userId) {
+		
+		if (confirm('Do you want to delete user ' + userId  + ' ?')) {
+			
+			location.href='/howitzer/deleteUser/' + userId + '?firstRow=<%= fromRow %>';
+	           
+	    } else {
+	    	   
+	        return false;
+	           
+	    }
+		
+	}
+	
 </script>
 
 </body>

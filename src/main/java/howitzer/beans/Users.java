@@ -2,6 +2,7 @@ package howitzer.beans;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.Objects;
 import org.apache.log4j.Logger;
 
 public class Users implements Serializable {
@@ -34,7 +35,7 @@ public class Users implements Serializable {
     this.rank = rank;
     
   }
-
+  
   public String getUserId() {
     
     return userId;
@@ -105,6 +106,45 @@ public class Users implements Serializable {
     
     this.rank = rank;
     
+  }
+
+  @Override
+  public boolean equals(Object obj) {
+
+      if (this == obj) {
+        
+        return true;
+        
+      }
+      
+      if (obj == null) {
+        
+          return false;
+          
+      }
+      
+      if (!(obj instanceof Users)) {
+        
+          return false;
+          
+      }
+      
+      Users other = (Users) obj;
+      
+      return Objects.equals(this.userId, other.userId) 
+          && Objects.equals(this.shots, other.shots) 
+          && Objects.equals(this.hits, other.hits)
+          && Objects.equals(this.misses, other.misses)
+          && Objects.equals(this.avgHits, other.avgHits)
+          && Objects.equals(this.rank, other.rank);
+                  
+  }
+
+  @Override
+  public int hashCode() {
+    
+      return Objects.hash(this.userId, this.shots, this.hits, this.misses, this.avgHits, this.rank);
+      
   }
 
 }

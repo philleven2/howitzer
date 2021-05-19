@@ -68,4 +68,21 @@ public class LogsServiceImpl implements LogsService {
 
   }
 
+  @Override
+  public void truncateLogs(Connection conn) throws SQLException {
+    
+    try {
+
+      // Truncate logs
+      logsDAO.truncateLogs(conn);
+
+    } catch (SQLException e) {
+
+      log.error(e.getMessage(), e);
+      e.printStackTrace();
+
+    }
+
+  }
+
 }

@@ -15,6 +15,7 @@ import org.apache.log4j.Logger;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -337,6 +338,55 @@ public class MainController {
 
   }
 
+  @RequestMapping(value = "/deleteUser/{userId}", method = RequestMethod.GET)
+  public String deleteUser(@PathVariable("userId") String userId, HttpServletRequest req) {
+
+    // Get first row
+    String firstRow = req.getParameter("firstRow");
+
+    int cntr = 0;
+
+    String msg = "";
+
+    StringBuffer strBuf = new StringBuffer();
+
+    try (Connection conn = ConnectionUtil.getConnection();) {
+
+      // No auto commit
+      conn.setAutoCommit(false);
+
+      // Delete row
+      cntr = userService.deleteUser(conn, userId);
+      
+      // If user not deleted
+      if (cntr == 0) {
+
+        strBuf.append("User ").append(userId)
+            .append(" and history were not deleted.");
+
+        msg = strBuf.toString();
+
+      // If user deleted
+      } else {
+
+        strBuf.append("User ").append(userId)
+            .append(" and history were deleted.");
+
+        msg = strBuf.toString();
+
+      }
+
+    } catch (SQLException e) {
+
+      log.error(e.getMessage(), e);
+      e.printStackTrace();
+
+    }
+
+    return "redirect:/users?msg=" + msg + "&firstRow=" + firstRow;
+
+  }
+
   @RequestMapping(value = "/history", method = RequestMethod.GET)
   public ModelAndView getHistory(HttpServletRequest req, String msg) {
 
@@ -493,6 +543,36 @@ public class MainController {
       model = new ModelAndView("listLogs");
       model.addObject("msg", e);
       return model;
+
+    }
+
+    return model;
+
+  }
+
+  @RequestMapping(value = "/truncate-logs", method = RequestMethod.GET)
+  public ModelAndView truncateLogs(HttpServletRequest req) {
+
+    ModelAndView model = new ModelAndView("menu");
+
+    try (Connection conn = ConnectionUtil.getConnection();) {
+
+      // Truncate logs
+      logsService.truncateLogs(conn);
+      
+      // Users
+      List<Users> users = new ArrayList<Users>();
+
+      // get users
+      users = userService.getUsers(conn);
+
+      model.addObject("users", users);
+      model.addObject("msg", "Logs table truncated.");
+
+    } catch (SQLException e) {
+
+      log.error(e.getMessage(), e);
+      e.printStackTrace();
 
     }
 

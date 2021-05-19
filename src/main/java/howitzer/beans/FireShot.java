@@ -1,7 +1,8 @@
 package howitzer.beans;
 
 import java.io.Serializable;
-import org.apache.log4j.Logger;
+//import org.apache.log4j.Logger;
+import java.util.Objects;
 
 public class FireShot implements Serializable {
 
@@ -188,6 +189,51 @@ public class FireShot implements Serializable {
     
     this.trajectory = trajectory;
     
+  }
+
+  @Override
+  public boolean equals(Object obj) {
+
+      if (this == obj) {
+        
+        return true;
+        
+      }
+      
+      if (obj == null) {
+        
+          return false;
+          
+      }
+      
+      if (!(obj instanceof FireShot)) {
+        
+          return false;
+          
+      }
+      
+      FireShot other = (FireShot) obj;
+      
+      return Objects.equals(this.userId, other.userId) 
+          && Objects.equals(this.distanceToTarget, other.distanceToTarget) 
+          && Objects.equals(this.angle, other.angle)
+          && Objects.equals(this.velocity, other.velocity)
+          && Objects.equals(this.targetSize, other.targetSize)
+          && Objects.equals(this.result, other.result)
+          && Objects.equals(this.distanceTraveled, other.distanceTraveled)
+          && Objects.equals(this.distanceMissedBy, other.distanceMissedBy)
+          && Objects.equals(this.timeTraveled, other.timeTraveled)
+          && Objects.equals(this.rank, other.rank)
+          && Objects.equals(this.trajectory, other.trajectory);
+                  
+  }
+
+  @Override
+  public int hashCode() {
+    
+      return Objects.hash(this.userId, this.distanceToTarget, this.angle, this.velocity, this.targetSize, this.result,
+          this.distanceTraveled, this.distanceMissedBy, this.timeTraveled, this.rank, this.trajectory);
+      
   }
 
 }

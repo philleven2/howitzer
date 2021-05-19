@@ -65,6 +65,11 @@ String selUserId = (String) request.getAttribute("selUserId");
 		    data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-animation=true title="View logs.">Logs</button>
 		</form>
 
+		<form class="form-inline" name="frmTruncateLogs" action="truncate-logs" method="GET">
+		    <button class="btn btn-sm btn-default" type="submit"
+		    data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-animation=true title="Truncate logs.">Truncate Logs</button>
+		</form>
+
 		<form class="form-inline" name="frmRefresh" action="back" method="GET">
 			<button class="btn btn-sm btn-default" type="submit"
 				data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-animation=true title="Refresh dashboard.">Refresh</button>
@@ -296,8 +301,8 @@ String selUserId = (String) request.getAttribute("selUserId");
 		document.frmUpdate.angle.style.backgroundColor = "white";
 		document.frmUpdate.targetSize.style.backgroundColor = "white";
 
-		// Edit user  id
-		if (trimAll(document.frmUpdate.userId.value) == "All") {
+		// Edit user id
+		if (trimAll(document.frmUpdate.userId.value) == "ALL") {
 	
 			// Display error message
 			$("#MsgDiv").text("Error: Invalid user id.  Pleaseselect a user id.");

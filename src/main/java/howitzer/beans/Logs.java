@@ -1,6 +1,7 @@
 package howitzer.beans;
 
 import java.io.Serializable;
+import java.util.Objects;
 import org.apache.log4j.Logger;
 
 public class Logs implements Serializable {
@@ -78,6 +79,43 @@ public class Logs implements Serializable {
     
     this.message = message;
     
+  }
+
+  @Override
+  public boolean equals(Object obj) {
+
+      if (this == obj) {
+        
+        return true;
+        
+      }
+      
+      if (obj == null) {
+        
+          return false;
+          
+      }
+      
+      if (!(obj instanceof Logs)) {
+        
+          return false;
+          
+      }
+      
+      Logs other = (Logs) obj;
+      
+      return Objects.equals(this.dateCreated, other.dateCreated) 
+          && Objects.equals(this.logger, other.logger) 
+          && Objects.equals(this.level, other.level)
+          && Objects.equals(this.message, other.message);
+                  
+  }
+
+  @Override
+  public int hashCode() {
+    
+      return Objects.hash(this.dateCreated, this.logger, this.level, this.message);
+      
   }
 
 }

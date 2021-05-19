@@ -1,6 +1,7 @@
 package howitzer.beans;
 
 import java.io.Serializable;
+import java.util.Objects;
 import org.apache.log4j.Logger;
 
 public class HowitzerHistory implements Serializable {
@@ -162,6 +163,50 @@ public class HowitzerHistory implements Serializable {
     
     this.timeStamp = timeStamp;
     
+  }
+
+  @Override
+  public boolean equals(Object obj) {
+
+      if (this == obj) {
+        
+        return true;
+        
+      }
+      
+      if (obj == null) {
+        
+          return false;
+          
+      }
+      
+      if (!(obj instanceof HowitzerHistory)) {
+        
+          return false;
+          
+      }
+      
+      HowitzerHistory other = (HowitzerHistory) obj;
+      
+      return Objects.equals(this.userId, other.userId) 
+          && Objects.equals(this.distanceToTarget, other.distanceToTarget) 
+          && Objects.equals(this.angle, other.angle)
+          && Objects.equals(this.velocity, other.velocity)
+          && Objects.equals(this.targetSize, other.targetSize)
+          && Objects.equals(this.result, other.result)
+          && Objects.equals(this.distanceTraveled, other.distanceTraveled)
+          && Objects.equals(this.distanceMissedBy, other.distanceMissedBy)
+          && Objects.equals(this.timeTraveled, other.timeTraveled)
+          && Objects.equals(this.timeStamp, other.timeStamp);
+                  
+  }
+
+  @Override
+  public int hashCode() {
+    
+      return Objects.hash(this.userId, this.distanceToTarget, this.angle, this.velocity, this.targetSize, this.result,
+          this.distanceTraveled, this.distanceMissedBy, this.timeTraveled, this.timeStamp);
+      
   }
 
 }

@@ -1,6 +1,7 @@
 package howitzer.beans;
 
 import java.io.Serializable;
+import java.util.Objects;
 import org.apache.log4j.Logger;
 
 public class Properties implements Serializable {
@@ -80,5 +81,42 @@ public class Properties implements Serializable {
     this.password = password;
 
   }
-  
+ 
+  @Override
+  public boolean equals(Object obj) {
+
+      if (this == obj) {
+        
+        return true;
+        
+      }
+      
+      if (obj == null) {
+        
+          return false;
+          
+      }
+      
+      if (!(obj instanceof Properties)) {
+        
+          return false;
+          
+      }
+      
+      Properties other = (Properties) obj;
+      
+      return Objects.equals(this.id, other.id) 
+          && Objects.equals(this.user, other.user) 
+          && Objects.equals(this.password, other.password)
+          && Objects.equals(this.lastModified, other.lastModified);
+                  
+  }
+
+  @Override
+  public int hashCode() {
+    
+      return Objects.hash(this.id, this.user, this.password, this.lastModified);
+      
+  }
+
 }

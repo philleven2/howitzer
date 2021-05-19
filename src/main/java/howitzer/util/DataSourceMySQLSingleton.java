@@ -58,7 +58,8 @@ public class DataSourceMySQLSingleton {
 
     } catch (Exception e) {
 
-      log.error(e.toString());
+      log.error(e);
+      throw e;
 
     }
 

@@ -25,5 +25,8 @@ public interface UserService {
   
   public int insertUser(Connection conn, String userId, int shots, int hits, int misses, BigDecimal avgHits, int userRank) 
     throws SQLException;
-  
+
+  public int deleteUser(Connection conn, String userId) 
+      throws SQLException;
+
 }

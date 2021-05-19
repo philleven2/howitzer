@@ -160,4 +160,43 @@ public class LogsDAO {
 
   }
 
+  public void truncateLogs(Connection conn) throws SQLException {
+    
+    PreparedStatement ps = null;
+    
+    String sql = null;
+
+    try {
+      
+      // Truncate tables
+      sql = "SET FOREIGN_KEY_CHECKS = 0;";
+      ps = conn.prepareStatement(sql);
+      ps.executeUpdate();
+
+      
+      // Truncate Logs
+      sql = "TRUNCATE TABLE Logs";
+      ps = conn.prepareStatement(sql);
+      ps.executeUpdate();
+
+      sql = "SET FOREIGN_KEY_CHECKS = 1;";
+      ps = conn.prepareStatement(sql);
+      ps.executeUpdate();
+
+    } catch(SQLException e) {
+      
+      log.error("Error: " + e.getMessage());
+      e.printStackTrace();
+
+      throw e;
+
+    } finally {
+      
+      // Close PreparedStatement
+      ConnectionUtil.closePreparedStatement(ps);
+      
+    }
+    
+  }
+  
 }

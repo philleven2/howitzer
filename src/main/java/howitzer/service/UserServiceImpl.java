@@ -233,4 +233,44 @@ public class UserServiceImpl implements UserService {
     
   }
 
+  @Override
+  public int deleteUser(Connection conn, String userId) 
+      throws SQLException {
+    
+    int cntr = 0;
+    
+    try {
+
+      // Does user already exist
+      Users user = usersDAO.getUser(conn, userId);
+
+      // If user found
+      if (user.getUserId() != null) {
+
+        // Delete row
+        cntr = usersDAO.deleteUser(conn, userId);
+
+        // Rank users
+        rankUsers(conn);
+
+      // If user not found
+      } else {
+
+        cntr = 0;
+
+      }
+
+    } catch (SQLException e) {
+
+      log.error(e.getMessage(), e);
+      e.printStackTrace();
+
+      throw e;
+
+    }
+
+    return cntr;
+    
+  }
+
 }

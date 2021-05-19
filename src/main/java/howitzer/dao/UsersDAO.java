@@ -671,4 +671,59 @@ public class UsersDAO {
 
   }
 
+  /**
+   * @param conn
+   * @param userId
+   * @return
+   * @throws SQLException
+   */
+  public int deleteUser(Connection conn, String userId) throws SQLException {
+
+    PreparedStatement ps = null;
+    PreparedStatement ps2 = null;
+
+    int cntr = 0;
+
+    try {
+
+      // DELETE FROM HowitzerHistory WHERE userId = ?
+      ps2 = conn.prepareStatement(HowitzerBundle.getValueForKey2("delete.history"));
+      ps2.setString(1, userId);
+
+      // Delete row
+      cntr = ps2.executeUpdate();
+
+      
+      // DELETE FROM Users WHERE userId = ?
+      ps = conn.prepareStatement(HowitzerBundle.getValueForKey2("delete.user"));
+      ps.setString(1, userId);
+
+      // Delete row
+      cntr = ps.executeUpdate();
+
+      // Commit transaction
+      conn.commit();
+
+    } catch (SQLException e) {
+
+      // Roll back transaction
+      conn.rollback();
+
+      log.error("Error: " + e.getMessage());
+      e.printStackTrace();
+
+      throw e;
+
+    } finally {
+      
+      // Close PreparedStatements
+      ConnectionUtil.closePreparedStatement(ps);
+      ConnectionUtil.closePreparedStatement(ps2);
+
+    }
+
+    return cntr;
+
+  }
+
 }
