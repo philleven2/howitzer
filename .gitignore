@@ -1,12 +1,12 @@
 .DS_Store
 target/
-
 /bin/
 temp
 .tmp
 *.DS_Store
 *.settings/
 *.classpath
+*.class
 *.project
 /.metadata/
 /RemoteSystemsTempFiles/
