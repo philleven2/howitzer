@@ -8,14 +8,26 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 import howitzer.beans.Users;
 import howitzer.resources.HowitzerBundle;
 import howitzer.util.ConnectionUtil;
 
+@Repository
 public class UsersDAO {
 
   final static Logger log = Logger.getLogger(UsersDAO.class.getName());
 
+  private ConnectionUtil connectionUtil;
+  
+  @Autowired
+  public UsersDAO (ConnectionUtil connectionUtil) {
+    
+    this.connectionUtil = connectionUtil;
+    
+  }
+  
   /**
    * @param conn
    * @return
@@ -610,10 +622,10 @@ public class UsersDAO {
     } finally {
       
       // Close PreparedStatement
-      ConnectionUtil.closePreparedStatement(ps);
+      connectionUtil.closePreparedStatement(ps);
 
       // Close ResultSet
-      ConnectionUtil.closeResultSet(rs);
+      connectionUtil.closeResultSet(rs);
 
     }
 
@@ -663,7 +675,7 @@ public class UsersDAO {
     } finally {
       
       // Close PreparedStatement
-      ConnectionUtil.closePreparedStatement(ps);
+      connectionUtil.closePreparedStatement(ps);
 
     }
 
@@ -717,8 +729,8 @@ public class UsersDAO {
     } finally {
       
       // Close PreparedStatements
-      ConnectionUtil.closePreparedStatement(ps);
-      ConnectionUtil.closePreparedStatement(ps2);
+      connectionUtil.closePreparedStatement(ps);
+      connectionUtil.closePreparedStatement(ps2);
 
     }
 

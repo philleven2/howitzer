@@ -5,9 +5,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import org.apache.log4j.Logger;
+import org.springframework.stereotype.Repository;
 import howitzer.beans.Properties;
 import howitzer.resources.HowitzerBundle;
 
+@Repository
 public class PropertiesDAO {
 
   final static Logger log = Logger.getLogger(PropertiesDAO.class.getName());

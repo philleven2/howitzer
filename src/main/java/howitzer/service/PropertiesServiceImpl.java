@@ -3,6 +3,7 @@ package howitzer.service;
 import java.sql.Connection;
 import java.sql.SQLException;
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.ModelAndView;
 import howitzer.beans.Properties;
@@ -14,18 +15,18 @@ public class PropertiesServiceImpl implements PropertiesService {
 
   final static Logger log = Logger.getLogger(PropertiesServiceImpl.class.getName());
 
-  // Create PropertiesDAO
-  PropertiesDAO propertiesDAO = new PropertiesDAO();
+  private PropertiesDAO propertiesDAO;
+  private ConnectionUtil connectionUtil;
 
   /**
    * Default Constructor.
    */
-  public PropertiesServiceImpl() {
+  @Autowired
+  public PropertiesServiceImpl(PropertiesDAO propertiesDAO, ConnectionUtil connectionUtil) {
 
-    // set default values
-
-    log.debug("Created instance: " + this.toString());
-
+    this.propertiesDAO = propertiesDAO;
+    this.connectionUtil = connectionUtil;
+    
   }
 
   @Override
@@ -73,7 +74,7 @@ public class PropertiesServiceImpl implements PropertiesService {
 
     ModelAndView model = new ModelAndView();
 
-    try (Connection conn = ConnectionUtil.getConnection();) {
+    try (Connection conn = connectionUtil.getConnection();) {
 
       // Get properties id
       int id = getLastId(conn);

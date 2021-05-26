@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import howitzer.beans.Users;
 import howitzer.dao.UsersDAO;
@@ -15,18 +16,16 @@ public class UserServiceImpl implements UserService {
 
   final static Logger log = Logger.getLogger(UserServiceImpl.class.getName());
 
-  // Create UsersDAO
-  UsersDAO usersDAO = new UsersDAO();
+  private UsersDAO usersDAO;
 
   /**
    * Default Constructor.
    */
-  public UserServiceImpl() {
+  @Autowired
+  public UserServiceImpl(UsersDAO usersDAO) {
 
-    // set default values
-
-    log.debug("Created instance: " + this.toString());
-
+    this.usersDAO = usersDAO;
+    
   }
 
   @Override

@@ -1,11 +1,9 @@
 package howitzer.util;
 
 import java.util.ArrayList;
+import org.springframework.stereotype.Service;
 
-/**
- * @author LevenP
- *
- */
+@Service
 public class PagingUtilities {
 
   /**
@@ -18,7 +16,7 @@ public class PagingUtilities {
    * @param toRow
    * @return
    */
-  public static ArrayList<String> calcFromToRows(int pagSiz, String mv, String firstRow, String fromRow, String toRow) {
+  public ArrayList<String> calcFromToRows(int pagSiz, String mv, String firstRow, String fromRow, String toRow) {
 
     ArrayList<String> alist2 = new ArrayList<String>(2);
     int fRow = 0;
@@ -55,13 +53,13 @@ public class PagingUtilities {
       fRow = tRow + 1;
       tRow = fRow + pagSiz - 1;
 
-      // If page up
+    // If page up
     } else if (mv.equals("PageUp")) {
 
       fRow = fRow - pagSiz;
       tRow = fRow + pagSiz - 1;
 
-      // If 1st time, update or back
+    // If 1st time, update or back
     } else {
 
       tRow = fRow + pagSiz - 1;

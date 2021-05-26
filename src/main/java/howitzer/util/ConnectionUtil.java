@@ -6,10 +6,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import org.apache.log4j.Logger;
+import org.springframework.stereotype.Service;
 import com.mysql.jdbc.jdbc2.optional.MysqlDataSource;
 import com.zaxxer.hikari.HikariDataSource;
 import howitzer.resources.HowitzerBundle;
 
+@Service
 public class ConnectionUtil {
 
   final static Logger log = Logger.getLogger(ConnectionUtil.class.getName());
@@ -20,7 +22,7 @@ public class ConnectionUtil {
    * @return
    * @throws SQLException
    */
-  public static Connection getConnection() throws SQLException {
+  public Connection getConnection() throws SQLException {
 
     Connection conn = null;
 
@@ -60,7 +62,7 @@ public class ConnectionUtil {
    * @return
    * @throws SQLException
    */
-  public static Connection getConnectionMySQL(String database) throws SQLException {
+  public Connection getConnectionMySQL(String database) throws SQLException {
 
     MysqlDataSource dataSource = null;
 
@@ -91,7 +93,7 @@ public class ConnectionUtil {
    * @return
    * @throws SQLException
    */
-  public static Connection getConnectionHikari(String database) throws SQLException {
+  public Connection getConnectionHikari(String database) throws SQLException {
 
     HikariDataSource pooled = null;
 
@@ -120,7 +122,7 @@ public class ConnectionUtil {
    * @param conn
    * @throws SQLException
    */
-  public static void closeConn(Connection conn) throws SQLException {
+  public void closeConn(Connection conn) throws SQLException {
     
     try {
       
@@ -145,7 +147,7 @@ public class ConnectionUtil {
    * @param conn
    * @throws SQLException
    */
-  public static void closeResultSet(ResultSet rs) throws SQLException {
+  public void closeResultSet(ResultSet rs) throws SQLException {
     
     try {
       
@@ -170,7 +172,7 @@ public class ConnectionUtil {
    * @param conn
    * @throws SQLException
    */
-  public static void closePreparedStatement(PreparedStatement ps) throws SQLException {
+  public void closePreparedStatement(PreparedStatement ps) throws SQLException {
     
     try {
       

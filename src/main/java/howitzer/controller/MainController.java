@@ -5,13 +5,13 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import javax.annotation.Resource;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -35,19 +35,27 @@ import howitzer.util.PagingUtilities;
 @Controller
 public class MainController {
 
-  @Resource(name = "howitzerService")
   private HowitzerService howitzerService;
-
-  @Resource(name = "historyService")
   private HistoryService historyService;
-
-  @Resource(name = "userService")
   private UserService userService;
-
-  @Resource(name = "logsService")
   private LogsService logsService;
+  private ConnectionUtil connectionUtil;
+  private PagingUtilities pagingUtilities;
 
   final static Logger log = Logger.getLogger(MainController.class.getName());
+  
+  @Autowired
+  public MainController(HowitzerService howitzerService, HistoryService historyService, UserService userService, 
+      LogsService logsService, ConnectionUtil connectionUtil, PagingUtilities pagingUtilities) {
+   
+    this.howitzerService = howitzerService;
+    this.historyService = historyService;
+    this.userService = userService;
+    this.logsService = logsService;
+    this.connectionUtil = connectionUtil;
+    this.pagingUtilities = pagingUtilities;
+    
+  }
   
   @RequestMapping(value = "/login", method = RequestMethod.GET)
   public ModelAndView login(@RequestParam(value = "error", required = false) String error,
@@ -112,7 +120,7 @@ public class MainController {
     // Users
     List<Users> users = new ArrayList<Users>();
 
-    try (Connection conn = ConnectionUtil.getConnection();) {
+    try (Connection conn = connectionUtil.getConnection();) {
 
     fireShot = new FireShot();
     
@@ -152,7 +160,7 @@ public class MainController {
     FireShot fireShotResult = null;
     ModelAndView model = new ModelAndView("menu", "fireShot", fireShot);
     
-    try (Connection conn = ConnectionUtil.getConnection();) {
+    try (Connection conn = connectionUtil.getConnection();) {
       
       String userId = req.getParameter("userId");
       
@@ -195,7 +203,7 @@ public class MainController {
 
     ModelAndView model = null;
 
-    try (Connection conn = ConnectionUtil.getConnection();) {
+    try (Connection conn = connectionUtil.getConnection();) {
 
       // Get page size
       String pagSize = HowitzerBundle.getValueForKey("page.size");
@@ -224,7 +232,7 @@ public class MainController {
       ArrayList<String> alist1 = new ArrayList<String>(2);
 
       // Calculate from/to rows
-      alist1 = PagingUtilities.calcFromToRows(pagSiz, mv, firstRow, fromRow, toRow);
+      alist1 = pagingUtilities.calcFromToRows(pagSiz, mv, firstRow, fromRow, toRow);
 
       // Parse fromRow
       fromRow = alist1.get(0);
@@ -295,7 +303,7 @@ public class MainController {
 
     StringBuffer strBuf = new StringBuffer();
 
-    try (Connection conn = ConnectionUtil.getConnection();) {
+    try (Connection conn = connectionUtil.getConnection();) {
 
       userId = user.getUserId();
       
@@ -350,7 +358,7 @@ public class MainController {
 
     StringBuffer strBuf = new StringBuffer();
 
-    try (Connection conn = ConnectionUtil.getConnection();) {
+    try (Connection conn = connectionUtil.getConnection();) {
 
       // No auto commit
       conn.setAutoCommit(false);
@@ -392,7 +400,7 @@ public class MainController {
 
     ModelAndView model = null;
 
-    try (Connection conn = ConnectionUtil.getConnection();) {
+    try (Connection conn = connectionUtil.getConnection();) {
 
       // Get page size
       String pagSize = HowitzerBundle.getValueForKey("page.size");
@@ -430,7 +438,7 @@ public class MainController {
       ArrayList<String> alist1 = new ArrayList<String>(2);
 
       // Calculate from/to rows
-      alist1 = PagingUtilities.calcFromToRows(pagSiz, mv, firstRow, fromRow, toRow);
+      alist1 = pagingUtilities.calcFromToRows(pagSiz, mv, firstRow, fromRow, toRow);
 
       // Parse fromRow
       fromRow = alist1.get(0);
@@ -473,7 +481,7 @@ public class MainController {
 
     ModelAndView model = null;
 
-    try (Connection conn = ConnectionUtil.getConnection();) {
+    try (Connection conn = connectionUtil.getConnection();) {
 
       // Get page size
       String pagSize = HowitzerBundle.getValueForKey("errors.page.size");
@@ -511,7 +519,7 @@ public class MainController {
       ArrayList<String> alist1 = new ArrayList<String>(2);
 
       // Calculate from/to rows
-      alist1 = PagingUtilities.calcFromToRows(pagSiz, mv, firstRow, fromRow, toRow);
+      alist1 = pagingUtilities.calcFromToRows(pagSiz, mv, firstRow, fromRow, toRow);
 
       // Parse fromRow
       fromRow = alist1.get(0);
@@ -557,7 +565,7 @@ public class MainController {
 
     FireShot fireShot = null;
 
-    try (Connection conn = ConnectionUtil.getConnection();) {
+    try (Connection conn = connectionUtil.getConnection();) {
 
       // Truncate logs
       logsService.truncateLogs(conn);

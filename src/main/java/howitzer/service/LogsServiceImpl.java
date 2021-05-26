@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import howitzer.beans.Logs;
 import howitzer.dao.LogsDAO;
@@ -14,16 +15,16 @@ public class LogsServiceImpl implements LogsService {
 
   private static final Logger log = Logger.getLogger(LogsServiceImpl.class.getName());
 
-  // Create LogsDAO
-  LogsDAO logsDAO = new LogsDAO();
+  private LogsDAO logsDAO;
 
   /**
    * Default Constructor.
    */
-  public LogsServiceImpl() {
+  @Autowired
+  public LogsServiceImpl(LogsDAO logsDAO) {
 
-    log.debug("Created instance: " + this.toString());
-
+    this.logsDAO = logsDAO;
+    
   }
 
   @Override

@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import howitzer.beans.HowitzerHistory;
 import howitzer.dao.HowitzerHistoryDAO;
@@ -13,18 +14,15 @@ public class HistoryServiceImpl implements HistoryService {
 
   final static Logger log = Logger.getLogger(HistoryServiceImpl.class.getName());
 
-  // Create HowitzerHistoryDAO
-  HowitzerHistoryDAO howitzerHistoryDAO = new HowitzerHistoryDAO();
+  private HowitzerHistoryDAO howitzerHistoryDAO;
 
   /**
    * Default Constructor.
    */
-  public HistoryServiceImpl() {
+  @Autowired
+  public HistoryServiceImpl(HowitzerHistoryDAO howitzerHistoryDAO) {
 
-    // set default values
-
-    log.debug("Created instance: " + this.toString());
-
+    this.howitzerHistoryDAO = howitzerHistoryDAO; 
   }
 
   @Override

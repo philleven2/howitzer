@@ -2,7 +2,6 @@ package howitzer.config;
 
 import java.sql.Connection;
 import java.sql.SQLException;
-import javax.annotation.Resource;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
@@ -28,15 +27,23 @@ import howitzer.util.ConnectionUtil;
 @EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
-  @Resource(name = "propertiesService")
   private PropertiesService propertiesService;
+  private ConnectionUtil connectionUtil;
 
   final static Logger log = Logger.getLogger(SecurityConfiguration.class.getName());
 
   @Autowired
+  public SecurityConfiguration (PropertiesService propertiesService, ConnectionUtil connectionUtil) {
+   
+    this.propertiesService = propertiesService;
+    this.connectionUtil = connectionUtil;
+    
+  }
+  
+  @Autowired
   public void configureGlobalSecurity(AuthenticationManagerBuilder auth) throws Exception {
 
-    try (Connection conn = ConnectionUtil.getConnection();) {
+    try (Connection conn = connectionUtil.getConnection();) {
 
       // Get properties id
       int id2 = propertiesService.getLastId(conn);

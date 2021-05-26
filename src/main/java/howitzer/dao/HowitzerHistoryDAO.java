@@ -7,9 +7,11 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import org.apache.log4j.Logger;
+import org.springframework.stereotype.Repository;
 import howitzer.beans.HowitzerHistory;
 import howitzer.resources.HowitzerBundle;
 
+@Repository
 public class HowitzerHistoryDAO {
 
   final static Logger log = Logger.getLogger(HowitzerHistoryDAO.class.getName());

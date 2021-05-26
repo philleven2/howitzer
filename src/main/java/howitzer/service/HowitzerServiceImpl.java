@@ -3,8 +3,8 @@ package howitzer.service;
 import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.SQLException;
-import javax.annotation.Resource;
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import howitzer.beans.FireShot;
 import howitzer.beans.Users;
@@ -17,23 +17,22 @@ public class HowitzerServiceImpl implements HowitzerService {
 
   final static Logger log = Logger.getLogger(HowitzerServiceImpl.class.getName());
 
-  @Resource(name = "userService")
   private UserService userService;
-
-  // Create HowitzerHistoryDAO
-  HowitzerHistoryDAO howitzerHistoryDAO = new HowitzerHistoryDAO();
-
-  // Create UsersDAO
-  UsersDAO usersDAO = new UsersDAO();
+  private HowitzerHistoryDAO howitzerHistoryDAO;
+  private UsersDAO usersDAO;
+  private ConnectionUtil connectionUtil;
 
   /**
    * Default Constructor.
    */
-  public HowitzerServiceImpl() {
+  @Autowired
+  public HowitzerServiceImpl(UserService userService, HowitzerHistoryDAO howitzerHistoryDAO, 
+      UsersDAO usersDAO, ConnectionUtil connectionUtil) {
 
-    // set default values
-
-    log.debug("Created instance: " + this.toString());
+    this.userService = userService;
+    this.howitzerHistoryDAO = howitzerHistoryDAO;
+    this.usersDAO = usersDAO;
+    this.connectionUtil = connectionUtil;
 
   }
 
@@ -83,7 +82,7 @@ public class HowitzerServiceImpl implements HowitzerService {
 
     StringBuilder sb = new StringBuilder();
     
-    try (Connection conn = ConnectionUtil.getConnection();) {
+    try (Connection conn = connectionUtil.getConnection();) {
       
       // Get distance to target (meters)
       distance = fireShot.getDistanceToTarget();
